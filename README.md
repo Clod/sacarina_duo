@@ -1,6 +1,6 @@
 # sacarina_duo
 
-A new Flutter project.
+Esta app hace un cálculo del riesgo cardíaco para pacientes pediátricos a partir de una serie de parámetros.
 
 ## Getting Started
 
