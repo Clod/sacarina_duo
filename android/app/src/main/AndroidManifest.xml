@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sacarina_duo">
+    package="ar.net.grasso.sacarina_duo">
    <application
         android:label="SACARINA"
         android:name="${applicationName}"

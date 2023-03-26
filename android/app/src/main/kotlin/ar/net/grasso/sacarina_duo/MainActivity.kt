@@ -1,4 +1,4 @@
-package com.example.sacarina_duo
+package ar.net.grasso.sacarina_duo
 
 import io.flutter.embedding.android.FlutterActivity
 
