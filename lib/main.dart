@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       dark: buildTheme(Brightness.dark),
       builder: (context, theme) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'SACARINA',
           theme: theme,
           // theme: ThemeData(
