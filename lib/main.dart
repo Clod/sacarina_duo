@@ -8,7 +8,6 @@ import 'package:sacarina_duo/theme.dart';
 import 'model.dart';
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([
@@ -21,7 +20,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
@@ -33,9 +31,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'SACARINA',
           theme: theme,
-          // theme: ThemeData(
-          //   primarySwatch: Colors.blue,
-          // ),
           home: const MyHomePage(title: 'SACARINA'),
         );
       },
@@ -162,14 +157,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   // https://meyerweb.com/eric/tools/color-blend/#FFEB3B:4CAF50:3:rgbd
                   segments: [
                     GaugeSegment('Low', 10, Colors.red),
-                    GaugeSegment('', 10, const Color.fromRGBO(246, 101, 55, 100)),
-                    GaugeSegment('', 10, const Color.fromRGBO(248, 134, 56, 100)),
-                    GaugeSegment('', 10, const Color.fromRGBO(251, 168, 57, 100)),
-                    GaugeSegment('', 10, const Color.fromRGBO(253, 201, 58, 100)),
+                    GaugeSegment(
+                        '', 10, const Color.fromRGBO(246, 101, 55, 100)),
+                    GaugeSegment(
+                        '', 10, const Color.fromRGBO(248, 134, 56, 100)),
+                    GaugeSegment(
+                        '', 10, const Color.fromRGBO(251, 168, 57, 100)),
+                    GaugeSegment(
+                        '', 10, const Color.fromRGBO(253, 201, 58, 100)),
                     GaugeSegment('Medium High', 10, Colors.yellow),
-                    GaugeSegment('', 10, const Color.fromRGBO(210, 220, 64, 100)),
-                    GaugeSegment('', 10, const Color.fromRGBO(166, 205, 70, 100)),
-                    GaugeSegment('', 10, const Color.fromRGBO(121, 190, 75, 100)),
+                    GaugeSegment(
+                        '', 10, const Color.fromRGBO(210, 220, 64, 100)),
+                    GaugeSegment(
+                        '', 10, const Color.fromRGBO(166, 205, 70, 100)),
+                    GaugeSegment(
+                        '', 10, const Color.fromRGBO(121, 190, 75, 100)),
                     GaugeSegment('High', 10, Colors.green),
                   ],
                   currentValue: _promedio,
@@ -183,13 +185,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () { setState(() {
-      //     resetValues();
-      //   });},
-      //   tooltip: 'Increment',
-      //   child: const Icon(Icons.add),
-      // ),  // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
@@ -237,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   debugPrint("El valor de $textoBoton es $value");
                   // setState(() => seleccion = value);
                   setState(() => setter(value));
-                  calcularPromedio();
+                  calcularPromedio(context);
                 }
 /*
               onChanged: (value) =>
@@ -261,7 +256,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void calcularPromedio() {
+  void calcularPromedio(BuildContext context) {
     try {
       _promedio = (double.parse(model.selecActividadFisica.code.toString()) +
               double.parse(model.selecDieta.code.toString()) +
@@ -272,8 +267,21 @@ class _MyHomePageState extends State<MyHomePage> {
               double.parse(model.selecPresionArterial.code.toString()) +
               double.parse(model.selecColesterol.code.toString())) /
           8.0;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "Long press the gauge to reset all values.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+              color: Colors.yellow,
+            ),
+          ),
+        ),
+      );
     } on FormatException {
-      debugPrint("Púmbate");
+      debugPrint("Todavía no están todos los parámetros cargados");
     }
   }
 }

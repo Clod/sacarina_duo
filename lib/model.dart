@@ -6,23 +6,6 @@ import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 class Modelo {
 
   static const valorInicial = PickerModel('',code: '?');
-  // Scroll/Radio Picker Model
-  // Scroll/Radio Picker Model
-  /*
-  static const List<PickerModel> state = <PickerModel>[
-    PickerModel('Opción 1', code: 'AL'),
-    PickerModel('Opción 2', code: 'AK'),
-    PickerModel('Opción 3', code: 'AZ'),
-    PickerModel('Opción 4', code: 'AR'),
-    PickerModel('Opción 5', code: 'CA'),
-    PickerModel('Opción 6', code: 'CO'),
-    PickerModel('Opción 7', code: 'CT'),
-  ];
-  // PickerModel selectedUsState = state[0];
-
-  PickerModel selectedUsState =   valorInicial;
-
-   */
 
   static const List<PickerModel> dieta = <PickerModel>[
     PickerModel('9-10 MEPA score points', code: 100.0),
