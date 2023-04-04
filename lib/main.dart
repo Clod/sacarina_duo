@@ -56,19 +56,19 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-            child: Text(
-          widget.title,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+          child: Text(
+            widget.title,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        )),
+        ),
       ),
       body: SafeArea(
         child: Container(
           margin: const EdgeInsets.all(8.0),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               armarRow(
                 context,
