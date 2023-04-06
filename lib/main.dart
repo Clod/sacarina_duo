@@ -1,11 +1,22 @@
+import 'dart:async';
+
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flutter_exit_app/flutter_exit_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:sacarina_duo/pretty_gauge.dart';
 import 'package:sacarina_duo/show_radio_picker_local.dart';
 import 'package:sacarina_duo/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'model.dart';
+
+final String tcText =
+    "This app calculates the estimated cardiovascular health score as defined by the American Heart Association. It may be used by physicians and parents of children. However, it is important to note that for parents, this score is ONLY ORIENTATIVE and should not replace a proper evaluation of cardiovascular health by a pediatrician. \n A PERIODIC CARDIOVASCULAR CHECK BY A QUALIFIED PEDIATRICIAN IS HIGHLY ADVISABLE REGARDLESS OF THE SCORE VALUE OBTAINED.";
+
+
+bool? showTandC = null;
+SharedPreferences? prefs;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +24,15 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
+  // Obtain shared preferences.
+  prefs = await SharedPreferences.getInstance();
+
+  showTandC = prefs!.getBool('showTandC');
+
+  debugPrint("Show T&C: " + showTandC.toString());
+  // If I could not read it I assume T&C have not veen already accepted
+  if (showTandC == null) showTandC = true;
 
   runApp(const MyApp());
 }
@@ -50,6 +70,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var model = Modelo();
   double _promedio = 0;
+  bool tcAccepted = false;
+  bool _buttonsEnabled = !showTandC!;
+
+  @override
+  initState() {
+    super.initState();
+    //  _buttonsEnabled = !showTandC!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,127 +93,214 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              armarRow(
-                context,
-                model.botonDieta,
-                Colors.red,
-                model.tituloDieta,
-                Modelo.dieta,
-                model.selecDieta,
-                model.setSelectedDieta,
-              ),
-              const Expanded(child: SizedBox(height: 5)),
-              armarRow(
-                  context,
-                  model.botonActividadFisica,
-                  Colors.red,
-                  model.tituloActividadFisica,
-                  Modelo.actividadFisica,
-                  model.selecActividadFisica,
-                  model.setActividadFisica),
-              const Expanded(child: SizedBox(height: 5)),
-              armarRow(
-                  context,
-                  model.botonMasaCorporal,
-                  Colors.red,
-                  model.tituloMasaCorporal,
-                  Modelo.masaCorporal,
-                  model.selecMasaCorporal,
-                  model.setMasaCorporal),
-              const Expanded(child: SizedBox(height: 5)),
-              armarRow(
-                context,
-                model.botonSueno,
-                Colors.red,
-                model.tituloSueno,
-                Modelo.sueno,
-                model.selecSueno,
-                model.setSueno,
-              ),
-              const Expanded(child: SizedBox(height: 5)),
-              armarRow(
-                context,
-                model.botonFumar,
-                Colors.blue,
-                model.tituloFumar,
-                Modelo.fumar,
-                model.selecFumar,
-                model.setFumar,
-              ),
-              const Expanded(child: SizedBox(height: 5)),
-              armarRow(
-                context,
-                model.botonDiabetes,
-                Colors.blue,
-                model.tituloDiabetes,
-                Modelo.diabetes,
-                model.selecDiabetes,
-                model.setDiabetes,
-              ),
-              const Expanded(child: SizedBox(height: 5)),
-              armarRow(
-                context,
-                model.botonPresionArterial,
-                Colors.blue,
-                model.tituloPresionArterial,
-                Modelo.presionArterial,
-                model.selecPresionArterial,
-                model.setPresionArterial,
-              ),
-              const Expanded(child: SizedBox(height: 5)),
-              armarRow(
-                context,
-                model.botonColesterol,
-                Colors.blue,
-                model.tituloColesterol,
-                Modelo.colesterol,
-                model.selecColesterol,
-                model.setColesterol,
-              ),
-              const Expanded(child: SizedBox(height: 5)),
-              GestureDetector(
-                onLongPress: () => setState(() {
-                  resetValues();
-                }),
-                child: PrettyGauge(
-                  gaugeSize: 190,
-                  // https://meyerweb.com/eric/tools/color-blend/#FFEB3B:4CAF50:3:rgbd
-                  segments: [
-                    GaugeSegment('Low', 10, Colors.red),
-                    GaugeSegment(
-                        '', 10, const Color.fromRGBO(246, 101, 55, 100)),
-                    GaugeSegment(
-                        '', 10, const Color.fromRGBO(248, 134, 56, 100)),
-                    GaugeSegment(
-                        '', 10, const Color.fromRGBO(251, 168, 57, 100)),
-                    GaugeSegment(
-                        '', 10, const Color.fromRGBO(253, 201, 58, 100)),
-                    GaugeSegment('Medium High', 10, Colors.yellow),
-                    GaugeSegment(
-                        '', 10, const Color.fromRGBO(210, 220, 64, 100)),
-                    GaugeSegment(
-                        '', 10, const Color.fromRGBO(166, 205, 70, 100)),
-                    GaugeSegment(
-                        '', 10, const Color.fromRGBO(121, 190, 75, 100)),
-                    GaugeSegment('High', 10, Colors.green),
-                  ],
-                  currentValue: _promedio,
-                  //currentValue: double.parse('80'),
-                  // currentValue: 42,
-                  displayWidget:
-                      const Text('Score', style: TextStyle(fontSize: 16)),
+      //body: buildMainWidget(context), // Anda
+      // body: buildTandCwidget(context), // Anda
+      // body: () {return SafeArea(child: Text("Algo"));}(),  // Anda
+      body: showTandC! ? buildTandCwidget(context) : buildMainWidget(context),
+      //
+    );
+  }
+
+  Widget? buildTandCwidget(BuildContext context) {
+    buildMainWidget(context);
+    Color? buttonColor;
+    Stack st;
+
+    st = Stack(
+      alignment: Alignment.center,
+      children: [
+        buildMainWidget(context),
+        Container(
+            color: Colors.cyan,
+            width: MediaQuery.of(context).size.width * 0.66,
+            height: MediaQuery.of(context).size.height * 0.60,
+            alignment: Alignment.center,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.75 * 0.7,
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.all(16),
+                    child: Text(tcText),
+                  ),
                 ),
+                Expanded(
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        ElevatedButton(
+                          onPressed: () {
+                            debugPrint("Cancelando...");
+                            // FlutterExitApp.exitApp(iosForceExit: true);
+                            FlutterExitApp.exitApp();
+                          },
+ /*                           onPressed: () {
+                              debugPrint("Tratando de irme");
+                              if (defaultTargetPlatform ==
+                                  TargetPlatform.android) {
+                                SystemNavigator.pop();
+                              } else {
+                                SchedulerBinding.instance
+                                    .addPostFrameCallback((_) {
+                                  () {
+                                    debugPrint("Saliendo en iOS");
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                  }();
+                                });
+                              }
+                            },
+*/
+                            child: Text('Cancel')),
+                        ElevatedButton(
+                            onPressed: () {
+                              debugPrint("T&C Aceptados");
+                              tcAccepted = true;
+                              _buttonsEnabled = true;
+                              setState(() {});
+                            },
+                            child: Text('Accept')),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ))
+      ],
+    );
+
+    if (tcAccepted) {
+      debugPrint("Intentando remover Dialog");
+      prefs!.setBool('showTandC', false);
+      st.children!.removeAt(1);
+      setState(() {});
+    }
+    return st;
+    // setState(() {});
+  }
+
+  // Main widget with the actual app
+  SafeArea buildMainWidget(BuildContext context) {
+    SafeArea sa = SafeArea(
+      child: Container(
+        margin: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            armarRow(
+              context,
+              model.botonDieta,
+              Colors.red,
+              model.tituloDieta,
+              Modelo.dieta,
+              model.selecDieta,
+              model.setSelectedDieta,
+            ),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRow(
+                context,
+                model.botonActividadFisica,
+                Colors.red,
+                model.tituloActividadFisica,
+                Modelo.actividadFisica,
+                model.selecActividadFisica,
+                model.setActividadFisica),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRow(
+                context,
+                model.botonMasaCorporal,
+                Colors.red,
+                model.tituloMasaCorporal,
+                Modelo.masaCorporal,
+                model.selecMasaCorporal,
+                model.setMasaCorporal),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRow(
+              context,
+              model.botonSueno,
+              Colors.red,
+              model.tituloSueno,
+              Modelo.sueno,
+              model.selecSueno,
+              model.setSueno,
+            ),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRow(
+              context,
+              model.botonFumar,
+              Colors.blue,
+              model.tituloFumar,
+              Modelo.fumar,
+              model.selecFumar,
+              model.setFumar,
+            ),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRow(
+              context,
+              model.botonDiabetes,
+              Colors.blue,
+              model.tituloDiabetes,
+              Modelo.diabetes,
+              model.selecDiabetes,
+              model.setDiabetes,
+            ),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRow(
+              context,
+              model.botonPresionArterial,
+              Colors.blue,
+              model.tituloPresionArterial,
+              Modelo.presionArterial,
+              model.selecPresionArterial,
+              model.setPresionArterial,
+            ),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRow(
+              context,
+              model.botonColesterol,
+              Colors.blue,
+              model.tituloColesterol,
+              Modelo.colesterol,
+              model.selecColesterol,
+              model.setColesterol,
+            ),
+            const Expanded(child: SizedBox(height: 5)),
+            GestureDetector(
+              onLongPress: _buttonsEnabled
+                  ? () => setState(() {
+                        resetValues();
+                      })
+                  : null,
+              child: PrettyGauge(
+                gaugeSize: 190,
+                // https://meyerweb.com/eric/tools/color-blend/#FFEB3B:4CAF50:3:rgbd
+                segments: [
+                  GaugeSegment('Low', 10, Colors.red),
+                  GaugeSegment('', 10, const Color.fromRGBO(246, 101, 55, 100)),
+                  GaugeSegment('', 10, const Color.fromRGBO(248, 134, 56, 100)),
+                  GaugeSegment('', 10, const Color.fromRGBO(251, 168, 57, 100)),
+                  GaugeSegment('', 10, const Color.fromRGBO(253, 201, 58, 100)),
+                  GaugeSegment('Medium High', 10, Colors.yellow),
+                  GaugeSegment('', 10, const Color.fromRGBO(210, 220, 64, 100)),
+                  GaugeSegment('', 10, const Color.fromRGBO(166, 205, 70, 100)),
+                  GaugeSegment('', 10, const Color.fromRGBO(121, 190, 75, 100)),
+                  GaugeSegment('High', 10, Colors.green),
+                ],
+                currentValue: _promedio,
+                //currentValue: double.parse('80'),
+                // currentValue: 42,
+                displayWidget:
+                    const Text('Score', style: TextStyle(fontSize: 16)),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
+
+//    buildTandCwidget(Scaffold.of(context).context);
+
+    return sa;
   }
 
   void resetValues() {
@@ -222,23 +337,25 @@ class _MyHomePageState extends State<MyHomePage> {
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 12.0),
             ),
-            onPressed: () => showMaterialRadioPickerLocal<PickerModel>(
-                context: context,
-                superTitle: textoBoton,
-                title: tituloDialogo,
-                items: listaOpciones,
-                selectedItem: seleccion,
-                onChanged: (value) {
-                  debugPrint("El valor de $textoBoton es $value");
-                  // setState(() => seleccion = value);
-                  setState(() => setter(value));
-                  calcularPromedio(context);
-                }
+            onPressed: _buttonsEnabled
+                ? () => showMaterialRadioPickerLocal<PickerModel>(
+                    context: context,
+                    superTitle: textoBoton,
+                    title: tituloDialogo,
+                    items: listaOpciones,
+                    selectedItem: seleccion,
+                    onChanged: (value) {
+                      debugPrint("El valor de $textoBoton es $value");
+                      // setState(() => seleccion = value);
+                      setState(() => setter(value));
+                      calcularPromedio(context);
+                    }
 /*
               onChanged: (value) =>
                   setState(() => model.selectedUsState = value),
 */
-                ),
+                    )
+                : null,
           ),
         ),
         Expanded(
