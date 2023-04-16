@@ -9,11 +9,11 @@ import 'package:sacarina_duo/pretty_gauge.dart';
 import 'package:sacarina_duo/show_radio_picker_local.dart';
 import 'package:sacarina_duo/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'model.dart';
 
 final String tcText =
-    "This app calculates the estimated cardiovascular health score as defined by the American Heart Association. It may be used by physicians and parents of children. However, it is important to note that for parents, this score is ONLY ORIENTATIVE and should not replace a proper evaluation of cardiovascular health by a pediatrician. \n A PERIODIC CARDIOVASCULAR CHECK BY A QUALIFIED PEDIATRICIAN IS HIGHLY ADVISABLE REGARDLESS OF THE SCORE VALUE OBTAINED.";
-
+    "This app calculates the estimated cardiovascular health score as defined by the American Heart Association. It may be used by physicians and parents of children. However, it is important to note that for parents, this score is ONLY ORIENTATIVE and should not replace a proper evaluation of cardiovascular health by a pediatrician. \n ";
 
 bool? showTandC = null;
 SharedPreferences? prefs;
@@ -121,7 +121,81 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: MediaQuery.of(context).size.height * 0.75 * 0.7,
                   child: SingleChildScrollView(
                     padding: EdgeInsets.all(16),
-                    child: Text(tcText),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "IMPORTANT NOTICE",
+                          style: TextStyle(
+                              color: Colors.deepOrange,
+                              fontSize: (MediaQuery.of(context)
+                                      .textScaleFactor) *
+                                  (DefaultTextStyle.of(context).style.fontSize)!
+                                      .toInt() *
+                                  0.3,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          "Please read carefully before using this app",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          "This app calculates the estimated cardiovascular health score as defined by the",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        //Text(tcText),
+                        GestureDetector(
+                          onTap: () async {
+                            await launchUrl(Uri.parse(
+                                'https://www.heart.org/en/healthy-living/healthy-lifestyle/lifes-essential-8'));
+                          },
+                          child: Text(
+                            'American Heart Association',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          "The scoring system and criteria are thoroughly explained in:",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            await launchUrl(Uri.parse(
+                                'https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
+                          },
+                          child: Text(
+                            'Life’s Essential 8: Updating and Enhancing the American Heart Association’s Construct of Cardiovascular Health: A Presidential Advisory From the American Heart Association',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "Published by: Donald M. Lloyd-Jones, MD, ScM, FAHA, Chair; Norrina B. Allen, PhD, MPH, FAHA; Cheryl A.M. Anderson, PhD, MPH, MS, FAHA; Terrie Black, DNP, MBA, CRRN, FAHA; LaPrincess C. Brewer, MD, MPH; Randi E. Foraker, PhD, MA, FAHA; Michael A. Grandner, PhD, MTR, FAHA; Helen Lavretsky, MD, MS; Amanda Marma Perak, MD, MS, FAHA; Garima Sharma, MD; Wayne Rosamond, PhD, MS, FAHA; on behalf of the American Heart Association",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        ],
+                    ),
                   ),
                 ),
                 Expanded(
@@ -130,28 +204,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         ElevatedButton(
-                          onPressed: () {
-                            debugPrint("Cancelando...");
-                            // FlutterExitApp.exitApp(iosForceExit: true);
-                            FlutterExitApp.exitApp();
-                          },
- /*                           onPressed: () {
-                              debugPrint("Tratando de irme");
-                              if (defaultTargetPlatform ==
-                                  TargetPlatform.android) {
-                                SystemNavigator.pop();
-                              } else {
-                                SchedulerBinding.instance
-                                    .addPostFrameCallback((_) {
-                                  () {
-                                    debugPrint("Saliendo en iOS");
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                  }();
-                                });
-                              }
+                            onPressed: () {
+                              debugPrint("Cancelando...");
+                              // Gracefully quit the app
+                              // Según leí, Apple no lo permite pero esto, de alguna manera, lo logra.
+                              // FlutterExitApp.exitApp(iosForceExit: true);
+                              FlutterExitApp.exitApp();
                             },
-*/
                             child: Text('Cancel')),
                         ElevatedButton(
                             onPressed: () {
@@ -291,6 +350,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 // currentValue: 42,
                 displayWidget:
                     const Text('Score', style: TextStyle(fontSize: 16)),
+              ),
+            ),
+            GestureDetector(
+              onTap: () async {
+                await launchUrl(Uri.parse(
+                    'https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
+              },
+              child: Text(
+                'Click here to read the foundations of the calculation',
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Colors.blue,
+                ),
               ),
             ),
           ],
