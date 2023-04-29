@@ -1,0 +1,36 @@
+{
+   "txtImportantNotice": "AVISO IMPORTANTE",
+
+  "txtDietButton": "Dieta",
+  "txtDietDialog" : "Cuantiles de adherencia al estilo de dieta DASH MEPA. Edades 2-19 a.",
+  "txtDietDialogOptions" :  "9-10 puntos MEPA |7-8 puntos MEPA |5-6 puntos MEPA |3-4 puntos MEPA |0-2 puntos MEPA ",
+
+  "txtPhysicalActivityButton" : "Actividad Física",
+  "txtPhysicalActivityDialog" : "Minutos semanales de actividad física moderada o intensa. Edades: 6 a 9",
+  "txtPhysicalActivityDialogOptions" : "≥ 420 minutos|360 - 419 minutos|300 - 359 minutos|240 - 299 minutos|120 - 239 minutos|1 - 119 minutos|Sin actividad",
+
+   "txtBodyMassIndexButton": "IMC",
+   "txtBodyMassIndexDialog": "Percentiles de IMC por edad y sexo, desde la infancia.",
+   "txtBodyMassIndexDialogOptions": "5to - < percentil 85|85 - < percentil 95|percentil 95 - < 120% del percentil 95|120% del percentil 95 - < 140% del percentil 95|≥ 140% del percentil 95",
+
+   "txtSleepButton": "Sueño",
+   "txtSleepDialog": "Horas promedio de sueño por noche (o por 24 h para edad ≤ 5)",
+   "txtSleepDialogOptions": "Rango óptimo apropiado para la edad|< 1h por encima del rango óptimo|< 1h por debajo del rango óptimo|1 - < 2h por debajo o ≥1h por encima del rango óptimo|2 - < 3h por debajo del rango óptimo|≥ 3h por debajo del rango óptimo",
+
+   "txtSmokeExposureButton": "Exposición al humo",
+   "txtSmokeExposureDialog": "Uso de tabaco combustible o uso de NDS inhalado a cualquier edad (a discreción del médico); o exposición al humo pasiva.",
+   "txtSmokeExposureDialogOptions": "Nunca lo ha probado |Nunca lo ha probado, pero vive con un fumador en casa |Ha probado algún producto con nicotina, pero hace más de 30 días|Ha probado algún producto con nicotina, pero hace más de 30 días y vive con un fumador en casa |Actualmente usa NDS inhalado |Actualmente usa NDS inhalado y vive con un fumador en casa |Uso actual de tabaco combustible (cualquier tipo en los últimos 30 días)",
+
+   "txtDiabetesButton": "Diabetes",
+   "txtDiabetesDialog": "Detección basada en síntomas de FBG (mg/dL) o HbA1c (%) a cualquier edad, o detección basada en riesgo a partir de los 10 años de edad o el inicio de la pubertad a discreción del clínico",
+   "txtDiabetesDialogOptions": "Sin antecedentes de diabetes y FBG<100 (o HbA1c < 5.7) |Sin diabetes y FBG 100 - 125 (o HbA1c 5.7 - 6.4) (prediabetes) |Diabetes con HbA1c < 7.0 |Diabetes con HbA1c 7.0 - 7.9 |Diabetes con HbA1c 8.0 - 8.9 |Diabetes con HbA1c 9.0 - 9.9 |Diabetes con HbA1c ≥ 10",
+
+   "txtBloodPressureButton": "Presión arterial",
+   "txtBloodPressureDialog": "Percentiles de PA sistólica y diastólica (mm Hg) por edad hasta los 12 años. A partir de los 13 años, utilizar el puntaje para adultos. La detección debe iniciarse a más tardar a los 3 años y antes, a discreción del clínico.",
+   "txtBloodPressureDialogOptions": "Óptimo (<percentil 90) |Óptimo (<percentil 90) (tratado) |Elevada (≥percentil 90 - <percentil 95 o ≥120/80 mm Hg a <percentil 95, lo que sea menor) |Elevada (≥percentil 90 - <percentil 95 o ≥120/80 mm Hg a <percentil 95, lo que sea menor) (tratado) |Hipertensión de etapa 1 (≥percentil 95 - <percentil 95 + 12 mm Hg, o 130/80 - 139/89 mm Hg, lo que sea menor) |Hipertensión de etapa 1 (≥percentil 95 - <percentil 95 + 12 mm Hg, o 130/80 - 139/89 mm Hg, lo que sea menor) (tratado) |Hipertensión de etapa 2 (≥percentil 95 + 12 mm Hg o ≥140/90 mm Hg, lo que sea menor) |Hipertensión de etapa 2 (≥percentil 95 + 12 mm Hg o ≥140/90 mm Hg, lo que sea menor) (tratado) |PA sistólica ≥160 o ≥percentil 95 + 30 mm Hg de PA sistólica, lo que sea menor y/o PA diastólica ≥100 o ≥percentil 95 + 20 mm Hg de PA diastólica",
+
+   "txtCholesterolButton" : "Colesterol",
+   "txtCholesterolDialog" : "Colesterol no-HDL (mg/dL), iniciando a más tardar a los 9-11 años y antes, a discreción del médico.",
+   "txtCholesterolDialogOptions" : "<100 |<100 (medicado) |100 - 119 |120 - 144 |145 - 189 |≥ 190"
+}
+

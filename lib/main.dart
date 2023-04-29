@@ -10,7 +10,13 @@ import 'package:sacarina_duo/show_radio_picker_local.dart';
 import 'package:sacarina_duo/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'model.dart';
+
+// PickerModel selectedDietaOpt = PickerModel('',code: '?');
+
+const initialValue = PickerModel('', code: '?');
 
 final String tcText =
     "This app calculates the estimated cardiovascular health score as defined by the American Heart Association. It may be used by physicians and parents of children. However, it is important to note that for parents, this score is ONLY ORIENTATIVE and should not replace a proper evaluation of cardiovascular health by a pediatrician. \n ";
@@ -51,6 +57,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'SACARINA',
           theme: theme,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: const MyHomePage(title: 'SACARINA'),
         );
       },
@@ -73,10 +81,99 @@ class _MyHomePageState extends State<MyHomePage> {
   bool tcAccepted = false;
   bool _buttonsEnabled = !showTandC!;
 
+  Map<String, PickerModel> pickedValues = {
+    "Diet": PickerModel('xxxxxxx', code: '?'),
+  };
+
+  // The variable where I keep the chosen option need a setter because I need to modify
+  // them inside the onChanged method of armarRowI and Dart does not allow to change
+  // the reference to an object passed as parameter
+
+  /*********************** Diet ***********************/
+
+  PickerModel _pickedValueDiet = PickerModel('xxxxxxx', code: '?');
+
+  setPickedValueDiet(PickerModel value) {
+    _pickedValueDiet = value;
+  }
+
+  final _dietValues = [100.0, 70.0, 30.0, 15.0, 0.0];
+
+  /*********************** Physical Activity ***********************/
+
+  PickerModel _pickedValuePhysicalActivity = PickerModel('xxxxxxx', code: '?');
+
+  setPickedValuePhysicalActivity(PickerModel value) {
+    _pickedValuePhysicalActivity = value;
+  }
+
+  final _PhysicalActivityValues = [100.0, 90.0, 80.0, 60.0, 40.0, 20.0, 0.0];
+
+  PickerModel _pickedValueBodyMassIndex = PickerModel('xxxxxxx', code: '?');
+
+  /*********************** BMI ***********************/
+
+  setPickedValueBodyMassIndex(PickerModel value) {
+    _pickedValueBodyMassIndex = value;
+  }
+
+  final _BodyMassIndexValues = [100.0, 30.0, 15.0, 70.0, 0.0];
+
+  /*********************** Sleep ***********************/
+
+  PickerModel _pickedValueSleep = PickerModel('xxxxxxx', code: '?');
+
+  setPickedValueSleep(PickerModel value) {
+    _pickedValueSleep = value;
+  }
+
+  final _SleepValues = [100.0, 90.0, 70.0, 40.0, 20.0, 0.0];
+
+  /*********************** Smoke exposure ***********************/
+
+  PickerModel _pickedValueSmokeExposure = PickerModel('xxxxxxx', code: '?');
+
+  setPickedValueSmokeExposure(PickerModel value) {
+    _pickedValueSmokeExposure = value;
+  }
+
+  final _SmokeExposureValues = [100.0, 80.0, 50.0, 30.0, 25.0, 5.0, 0.0];
+
+  /*********************** Diabetes ***********************/
+
+  PickerModel _pickedValueDiabetes = PickerModel('xxxxxxx', code: '?');
+
+  setPickedValueDiabetes(PickerModel value) {
+    _pickedValueDiabetes = value;
+  }
+
+  final _DiabetesValues = [100.0, 60.0, 40.0, 30.0, 20.0, 10.0, 0.0];
+
+  /*********************** Blood Pressure ***********************/
+
+  PickerModel _pickedValueBloodPressure = PickerModel('xxxxxxx', code: '?');
+
+  setPickedValueBloodPressure(PickerModel value) {
+    _pickedValueBloodPressure = value;
+  }
+
+  final _BloodPressureValues = [100.0, 80.0, 75.0, 55.0, 50.0, 30.0, 25.0, 5.0, 0.0];
+
+  /*********************** Cholesterol ***********************/
+
+  PickerModel _pickedValueCholesterol = PickerModel('xxxxxxx', code: '?');
+
+  setPickedValueCholesterol(PickerModel value) {
+    _pickedValueCholesterol = value;
+  }
+
+  final _CholesterolValues = [100.0, 80.0, 60.0, 40.0, 20.0, 0.0];
+
+  /***********************************************************/
+
   @override
   initState() {
     super.initState();
-    //  _buttonsEnabled = !showTandC!;
   }
 
   @override
@@ -86,6 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Center(
           child: Text(
             widget.title,
+            // AppLocalizations.of(context)!.txtDietButton, // Funcionó!!!!
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -103,7 +201,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget? buildTandCwidget(BuildContext context) {
     buildMainWidget(context);
-    Color? buttonColor;
     Stack st;
 
     st = Stack(
@@ -125,14 +222,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "IMPORTANT NOTICE",
+                          AppLocalizations.of(context)!.txtImportantNotice,
                           style: TextStyle(
                               color: Colors.deepOrange,
-                              fontSize: (MediaQuery.of(context)
-                                      .textScaleFactor) *
-                                  (DefaultTextStyle.of(context).style.fontSize)!
-                                      .toInt() *
-                                  0.3,
+                              fontSize: (MediaQuery.of(context).textScaleFactor) * (DefaultTextStyle.of(context).style.fontSize)!.toInt() * 0.3,
                               fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
@@ -157,8 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         //Text(tcText),
                         GestureDetector(
                           onTap: () async {
-                            await launchUrl(Uri.parse(
-                                'https://www.heart.org/en/healthy-living/healthy-lifestyle/lifes-essential-8'));
+                            await launchUrl(Uri.parse('https://www.heart.org/en/healthy-living/healthy-lifestyle/lifes-essential-8'));
                           },
                           child: Text(
                             'American Heart Association',
@@ -178,8 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         GestureDetector(
                           onTap: () async {
-                            await launchUrl(Uri.parse(
-                                'https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
+                            await launchUrl(Uri.parse('https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
                           },
                           child: Text(
                             'Life’s Essential 8: Updating and Enhancing the American Heart Association’s Construct of Cardiovascular Health: A Presidential Advisory From the American Heart Association',
@@ -194,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        ],
+                      ],
                     ),
                   ),
                 ),
@@ -232,7 +323,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (tcAccepted) {
       debugPrint("Intentando remover Dialog");
       prefs!.setBool('showTandC', false);
-      st.children!.removeAt(1);
+      st.children.removeAt(1);
       setState(() {});
     }
     return st;
@@ -241,87 +332,100 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Main widget with the actual app
   SafeArea buildMainWidget(BuildContext context) {
+//    debugPrint("selectedDietaOpt: ${pickedValues["Diet"]?.name}");
+    debugPrint("selectedDietaOpt: $_pickedValueDiet");
+
     SafeArea sa = SafeArea(
       child: Container(
         margin: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            armarRow(
+            armarRowI(
               context,
-              model.botonDieta,
+              AppLocalizations.of(context)!.txtDietButton,
               Colors.red,
-              model.tituloDieta,
-              Modelo.dieta,
-              model.selecDieta,
-              model.setSelectedDieta,
+              AppLocalizations.of(context)!.txtDietDialog,
+              AppLocalizations.of(context)!.txtDietDialogOptions,
+              _dietValues,
+              _pickedValueDiet,
+              setPickedValueDiet,
             ),
             const Expanded(child: SizedBox(height: 5)),
-            armarRow(
-                context,
-                model.botonActividadFisica,
-                Colors.red,
-                model.tituloActividadFisica,
-                Modelo.actividadFisica,
-                model.selecActividadFisica,
-                model.setActividadFisica),
-            const Expanded(child: SizedBox(height: 5)),
-            armarRow(
-                context,
-                model.botonMasaCorporal,
-                Colors.red,
-                model.tituloMasaCorporal,
-                Modelo.masaCorporal,
-                model.selecMasaCorporal,
-                model.setMasaCorporal),
-            const Expanded(child: SizedBox(height: 5)),
-            armarRow(
+            armarRowI(
               context,
-              model.botonSueno,
+              AppLocalizations.of(context)!.txtPhysicalActivityButton,
               Colors.red,
-              model.tituloSueno,
-              Modelo.sueno,
-              model.selecSueno,
-              model.setSueno,
+              AppLocalizations.of(context)!.txtPhysicalActivityDialog,
+              AppLocalizations.of(context)!.txtPhysicalActivityDialogOptions,
+              _PhysicalActivityValues,
+              _pickedValuePhysicalActivity,
+              setPickedValuePhysicalActivity,
             ),
             const Expanded(child: SizedBox(height: 5)),
-            armarRow(
+            armarRowI(
               context,
-              model.botonFumar,
-              Colors.blue,
-              model.tituloFumar,
-              Modelo.fumar,
-              model.selecFumar,
-              model.setFumar,
+              AppLocalizations.of(context)!.txtBodyMassIndexButton,
+              Colors.red,
+              AppLocalizations.of(context)!.txtBodyMassIndexDialog,
+              AppLocalizations.of(context)!.txtBodyMassIndexDialogOptions,
+              _BodyMassIndexValues,
+              _pickedValueBodyMassIndex,
+              setPickedValueBodyMassIndex,
             ),
             const Expanded(child: SizedBox(height: 5)),
-            armarRow(
+            armarRowI(
               context,
-              model.botonDiabetes,
-              Colors.blue,
-              model.tituloDiabetes,
-              Modelo.diabetes,
-              model.selecDiabetes,
-              model.setDiabetes,
+              AppLocalizations.of(context)!.txtSleepButton,
+              Colors.red,
+              AppLocalizations.of(context)!.txtSleepDialog,
+              AppLocalizations.of(context)!.txtSleepDialogOptions,
+              _SleepValues,
+              _pickedValueSleep,
+              setPickedValueSleep,
             ),
             const Expanded(child: SizedBox(height: 5)),
-            armarRow(
+            armarRowI(
               context,
-              model.botonPresionArterial,
+              AppLocalizations.of(context)!.txtSmokeExposureButton,
               Colors.blue,
-              model.tituloPresionArterial,
-              Modelo.presionArterial,
-              model.selecPresionArterial,
-              model.setPresionArterial,
+              AppLocalizations.of(context)!.txtSmokeExposureDialog,
+              AppLocalizations.of(context)!.txtSmokeExposureDialogOptions,
+              _SmokeExposureValues,
+              _pickedValueSmokeExposure,
+              setPickedValueSmokeExposure,
             ),
             const Expanded(child: SizedBox(height: 5)),
-            armarRow(
+            armarRowI(
               context,
-              model.botonColesterol,
+              AppLocalizations.of(context)!.txtDiabetesButton,
               Colors.blue,
-              model.tituloColesterol,
-              Modelo.colesterol,
-              model.selecColesterol,
-              model.setColesterol,
+              AppLocalizations.of(context)!.txtDiabetesDialog,
+              AppLocalizations.of(context)!.txtDiabetesDialogOptions,
+              _DiabetesValues,
+              _pickedValueDiabetes,
+              setPickedValueDiabetes,
+            ),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRowI(
+              context,
+              AppLocalizations.of(context)!.txtBloodPressureButton,
+              Colors.blue,
+              AppLocalizations.of(context)!.txtBloodPressureDialog,
+              AppLocalizations.of(context)!.txtBloodPressureDialogOptions,
+              _BloodPressureValues,
+              _pickedValueBloodPressure,
+              setPickedValueBloodPressure,
+            ),
+            const Expanded(child: SizedBox(height: 5)),
+            armarRowI(
+              context,
+              AppLocalizations.of(context)!.txtCholesterolButton,
+              Colors.blue,
+              AppLocalizations.of(context)!.txtCholesterolDialog,
+              AppLocalizations.of(context)!.txtCholesterolDialogOptions,
+              _CholesterolValues,
+              _pickedValueCholesterol,
+              setPickedValueCholesterol,
             ),
             const Expanded(child: SizedBox(height: 5)),
             GestureDetector(
@@ -348,14 +452,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 currentValue: _promedio,
                 //currentValue: double.parse('80'),
                 // currentValue: 42,
-                displayWidget:
-                    const Text('Score', style: TextStyle(fontSize: 16)),
+                displayWidget: const Text('Score', style: TextStyle(fontSize: 16)),
               ),
             ),
             GestureDetector(
               onTap: () async {
-                await launchUrl(Uri.parse(
-                    'https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
+                await launchUrl(Uri.parse('https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
               },
               child: Text(
                 'Click here to read the foundations of the calculation',
@@ -375,7 +477,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return sa;
   }
 
-  void resetValues() {
+  void resetValuesOld() {
     model.setSelectedDieta(Modelo.valorInicial);
     model.setActividadFisica(Modelo.valorInicial);
     model.setMasaCorporal(Modelo.valorInicial);
@@ -385,6 +487,104 @@ class _MyHomePageState extends State<MyHomePage> {
     model.setPresionArterial(Modelo.valorInicial);
     model.setColesterol(Modelo.valorInicial);
     _promedio = 0;
+  }
+
+  void resetValues() {
+    _pickedValueDiet = initialValue;
+    _pickedValuePhysicalActivity = initialValue;
+    _pickedValueBodyMassIndex = initialValue;
+    _pickedValueSleep = initialValue;
+    _pickedValueSmokeExposure = initialValue;
+    _pickedValueDiabetes = initialValue;
+    _pickedValueBloodPressure = initialValue;
+    _pickedValueCholesterol = initialValue;
+    _promedio = 0;
+  }
+
+  Row armarRowI(
+    BuildContext context,
+    String textoBoton,
+    Color? buttonColor,
+    String tituloDialogo,
+    String listaOpciones,
+    List<double> listaValores,
+    PickerModel seleccion,
+    setter,
+  ) {
+    return Row(
+      children: <Widget>[
+        SizedBox(
+          width: 150.0,
+          height: 35.0,
+          child: ElevatedButton(
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
+            child: Text(
+              textoBoton,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12.0),
+            ),
+            onPressed: _buttonsEnabled
+                ? () {
+                    debugPrint("Armando la lista de opciones");
+                    debugPrint("Selected: $pickedValues['Diet']");
+                    List<String> optionsTexts = listaOpciones.split("|");
+                    List<PickerModel> optionsFull = [];
+                    for (int i = 0; i < optionsTexts.length; i++) {
+                      optionsFull.add(PickerModel(optionsTexts[i], code: listaValores[i]));
+                    }
+                    ;
+                    debugPrint("Indice: " +
+                        //optionsFull.indexOf(pickedValues['Diet']!).toString());
+                        optionsFull.indexOf(seleccion).toString());
+                    // As this is a new list with new objets, the picked value is not included
+                    // I need to search for the equivalent object (I search for the same value
+                    // because the laguage might have changes in the middle.
+
+                    optionsFull.forEach((element) {
+                      /*
+                        if (element.code.toString() ==
+                          pickedValues['Diet']!.code.toString()) {
+                        pickedValues['Diet'] = element;
+                      }*/
+                      if (element.code.toString() == seleccion.code.toString()) {
+                        seleccion = element;
+                      }
+                    });
+
+                    showMaterialRadioPickerLocal<PickerModel>(
+                        context: context,
+                        superTitle: textoBoton,
+                        title: tituloDialogo,
+                        items: optionsFull,
+                        //selectedItem: pickedValues['Diet'],
+                        selectedItem: seleccion,
+                        onChanged: (value) {
+                          debugPrint("El valor de $textoBoton es $value");
+                          //setState(() => pickedValues["Diet"] = value);
+                          setState(() {
+                            setter(value);
+                            // _pickedValueDieta = value;
+                          });
+                          //setState(() => setter(value));
+                          calcularPromedio(context);
+                        });
+                  }
+                : null,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            height: 35,
+            child: SingleChildScrollView(
+              child: Text(
+                '$seleccion (${seleccion.code})',
+                textAlign: TextAlign.right,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Row armarRow(
@@ -402,8 +602,7 @@ class _MyHomePageState extends State<MyHomePage> {
           width: 150.0,
           height: 35.0,
           child: ElevatedButton(
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(buttonColor)),
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
             child: Text(
               textoBoton,
               textAlign: TextAlign.center,
@@ -447,15 +646,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void calcularPromedio(BuildContext context) {
     try {
-      _promedio = (double.parse(model.selecActividadFisica.code.toString()) +
-              double.parse(model.selecDieta.code.toString()) +
-              double.parse(model.selecMasaCorporal.code.toString()) +
-              double.parse(model.selecSueno.code.toString()) +
-              double.parse(model.selecFumar.code.toString()) +
-              double.parse(model.selecDiabetes.code.toString()) +
-              double.parse(model.selecPresionArterial.code.toString()) +
-              double.parse(model.selecColesterol.code.toString())) /
+      // _promedio = (double.parse(model.selecActividadFisica.code.toString()) +
+      //         double.parse(model.selecDieta.code.toString()) +
+      //         double.parse(model.selecMasaCorporal.code.toString()) +
+      //         double.parse(model.selecSueno.code.toString()) +
+      //         double.parse(model.selecFumar.code.toString()) +
+      //         double.parse(model.selecDiabetes.code.toString()) +
+      //         double.parse(model.selecPresionArterial.code.toString()) +
+      //         double.parse(model.selecColesterol.code.toString())) /
+      //     8.0;
+
+      _promedio = (double.parse(_pickedValueDiet.code.toString()) +
+              double.parse(_pickedValuePhysicalActivity.code.toString()) +
+              double.parse(_pickedValueBodyMassIndex.code.toString()) +
+              double.parse(_pickedValueSleep.code.toString()) +
+              double.parse(_pickedValueSmokeExposure.code.toString()) +
+              double.parse(_pickedValueDiabetes.code.toString()) +
+              double.parse(_pickedValueBloodPressure.code.toString()) +
+              double.parse(_pickedValueCholesterol.code.toString())) /
           8.0;
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(

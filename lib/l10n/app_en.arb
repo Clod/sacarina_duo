@@ -1,0 +1,55 @@
+{
+
+   "txtImportantNotice": "IMPORTANT NOTICE",
+
+  "txtDietButton": "Diet",
+  "@txtDietButton": {"description": ""},
+  "txtDietDialog" : "Quantiles of DASH-style diet adherence MEPA. Ages 2-19 y.';",
+  "txtDietDialogOptions" :  "9-10 MEPA score points|7-8 MEPA score points|5-6 MEPA score points|3-4 MEPA score points|0-2 MEPA score points",
+
+  "txtPhysicalActivityButton" : "Physical Activity",
+  "txtPhysicalActivityDialog" : "Minutes of moderate or greater intensity activity per week. Ages: 6 to 9.",
+  "txtPhysicalActivityDialogOptions" : "≥ 420 minutes|360 - 419 minutes|300 - 359 minutes|240 - 299 minutes|120 - 239 minutes|1 - 119 minutes|No activity)",
+  
+  "txtBodyMassIndexButton" : "BMI",
+  "txtBodyMassIndexDialog" : "BMI percentiles for age and sex, starting in infancy.",
+  "txtBodyMassIndexDialogOptions" : "5th - < 85th percentile|85th - < 95th|95th percentile - < 120% of the 95th percentile|120% of the 95th - < 140% of the 95th percentile|≥ 140% of the 95th percentile",
+
+  "txtSleepButton" : "Sleep",
+  "txtSleepDialog" : "Average hours of sleep per night (or per 24 h for age ≤ 5)",
+  "txtSleepDialogOptions" : "Age-appropriate optimal range|< 1h above optimal range|< 1h above optimal range|1 - < 2h below or ≥1h above optimal range|2 - < 3h below optimal range|≥ 3h below optimal range",
+  
+  "txtSmokeExposureButton" : "Smoke Exposure",
+  "txtSmokeExposureDialog" : "Combustible tobacco use or inhaled NDS use at any age (per clinician discretion); or secondhand smoke exposure",
+  "txtSmokeExposureDialogOptions" : "Never tried |Never tried but lives with indoor smoker at home |Tried any nicotine product, but > 30d ago |Tried any nicotine product, but > 30d ago and lives with indoor smoker at home |Currently using inhaled NDS |Currently using inhaled NDS and lives with indoor smoker at home |Current combustible use (any within 30d)",
+
+  "txtDiabetesButton" : "Diabetes",
+  "txtDiabetesDialog" : "FBG (mg/dL) or HbA1c (%) symptom-based screening at any age or risk-based screening starting at age ≥10y of age or onset of puberty per clinician discretion",
+  "txtDiabetesDialogOptions" : "No history of diabetes and FBG<100 (or HbA1c < 5.7) |No diabetes and FBG 100 - 125 (or HbA1c 5.7 - 6.4) (prediabetes) |Diabetes with HbA1c < 7.0 |Diabetes with HbA1c 7.0 - 7.9 |Diabetes with HbA1c 8.0 - 8.9 |Diabetes with HbA1c 9.0 - 9.9 |Diabetes with HbA1c ≥ 10",
+  
+  "txtBloodPressureButton" : "Blood Pressure",
+  "txtBloodPressureDialog" : "Systolic and diastolic BP (mm Hg) percentiles for age through 12y. For age ≥ 13y use adult scoring. Screening should start no later than age 3y and earlier per clinician discretion.",
+  "txtBloodPressureDialogOptions" : "Optimal (<90th percentile) |Optimal (<90th percentile) (treated) |Elevated (≥90th - <95th percentile or ≥ 120/80 mm Hg to <95th percentile, whichever is lower) |Elevated (≥90th - <95th percentile or ≥ 120/80 mm Hg to <95th percentile, whichever is lower) (treated) |Stage 1 hypertension (≥95th - <95th percentile + 12 mm Hg, or 130/80 - 139/89 mm Hg, whichever is lower |Stage 1 hypertension (≥95th - <95th percentile + 12 mm Hg, or 130/80 - 139/89 mm Hg, whichever is lower (treated) |Stage 2 hypertension (≥95th percentile + 12 mm Hg, or ≥140/90 mm Hg, whichever is lower) |Stage 2 hypertension (≥95th percentile + 12 mm Hg, or ≥140/90 mm Hg, whichever is lower) (treated) |Systolic BP ≥ 160 or ≥95th percentile + 30 mm Hg systolic BP, whichever is lower and/or diastolic BP ≥ 100 or ≥ 95th percentile + 20 mm Hg diastolic BP",
+  
+    "txtCholesterolButton" : "Cholesterol",
+    "txtCholesterolDialog" : "Non-HDL cholesterol (mg/dL), starting no later than age 9 - 11y and earlier per clinician discretion",
+    "txtCholesterolDialogOptions" : "<100 |<100 (drug-treated) |100 - 119 |120 - 144 |145 - 189 |≥ 190"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

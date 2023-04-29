@@ -1,5 +1,5 @@
 name: sacarina_duo
-description: A new Flutter project.
+description: Cardiac Health Score Calculator
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -43,6 +43,9 @@ dependencies:
   shared_preferences: ^2.1.0
   flutter_exit_app: ^1.1.2
   url_launcher: ^6.1.10
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 
 dev_dependencies:
@@ -70,7 +73,7 @@ flutter_icons:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true # Add this line
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
