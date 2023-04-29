@@ -1,6 +1,14 @@
 {
 
    "txtImportantNotice": "IMPORTANT NOTICE",
+   "txtReadCarefully": "Please read carefully before using this app",
+   "txtAppPurpose" : "This app calculates the estimated cardiovascular health score as defined by the",
+   "txtFundamentalsLocation" : "The scoring system and criteria are thoroughly explained in:",
+   "txtLifeEssentialEightObjective": "Life’s Essential 8: Updating and Enhancing the American Heart Association’s Construct of Cardiovascular Health: A Presidential Advisory From the American Heart Association",
+   "txtPaperAuthors" : "Published by: Donald M. Lloyd-Jones, MD, ScM, FAHA, Chair; Norrina B. Allen, PhD, MPH, FAHA; Cheryl A.M. Anderson, PhD, MPH, MS, FAHA; Terrie Black, DNP, MBA, CRRN, FAHA; LaPrincess C. Brewer, MD, MPH; Randi E. Foraker, PhD, MA, FAHA; Michael A. Grandner, PhD, MTR, FAHA; Helen Lavretsky, MD, MS; Amanda Marma Perak, MD, MS, FAHA; Garima Sharma, MD; Wayne Rosamond, PhD, MS, FAHA; on behalf of the American Heart Association",
+   "txtFundamentalsLocationMainWindow" : "Click here to read the foundations of the calculation",
+   "txtButtonAcceptTandC" : "Accept",
+   "txtButtonRejectTandC" : "Cancel",
 
   "txtDietButton": "Diet",
   "@txtDietButton": {"description": ""},

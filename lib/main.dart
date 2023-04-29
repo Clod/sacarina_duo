@@ -18,9 +18,6 @@ import 'model.dart';
 
 const initialValue = PickerModel('', code: '?');
 
-final String tcText =
-    "This app calculates the estimated cardiovascular health score as defined by the American Heart Association. It may be used by physicians and parents of children. However, it is important to note that for parents, this score is ONLY ORIENTATIVE and should not replace a proper evaluation of cardiovascular health by a pediatrician. \n ";
-
 bool? showTandC = null;
 SharedPreferences? prefs;
 
@@ -82,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _buttonsEnabled = !showTandC!;
 
   Map<String, PickerModel> pickedValues = {
-    "Diet": PickerModel('xxxxxxx', code: '?'),
+    "Diet": initialValue,
   };
 
   // The variable where I keep the chosen option need a setter because I need to modify
@@ -91,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /*********************** Diet ***********************/
 
-  PickerModel _pickedValueDiet = PickerModel('xxxxxxx', code: '?');
+  PickerModel _pickedValueDiet = initialValue;
 
   setPickedValueDiet(PickerModel value) {
     _pickedValueDiet = value;
@@ -101,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /*********************** Physical Activity ***********************/
 
-  PickerModel _pickedValuePhysicalActivity = PickerModel('xxxxxxx', code: '?');
+  PickerModel _pickedValuePhysicalActivity = initialValue;
 
   setPickedValuePhysicalActivity(PickerModel value) {
     _pickedValuePhysicalActivity = value;
@@ -109,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final _PhysicalActivityValues = [100.0, 90.0, 80.0, 60.0, 40.0, 20.0, 0.0];
 
-  PickerModel _pickedValueBodyMassIndex = PickerModel('xxxxxxx', code: '?');
+  PickerModel _pickedValueBodyMassIndex = initialValue;
 
   /*********************** BMI ***********************/
 
@@ -121,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /*********************** Sleep ***********************/
 
-  PickerModel _pickedValueSleep = PickerModel('xxxxxxx', code: '?');
+  PickerModel _pickedValueSleep = initialValue;
 
   setPickedValueSleep(PickerModel value) {
     _pickedValueSleep = value;
@@ -131,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /*********************** Smoke exposure ***********************/
 
-  PickerModel _pickedValueSmokeExposure = PickerModel('xxxxxxx', code: '?');
+  PickerModel _pickedValueSmokeExposure = initialValue;
 
   setPickedValueSmokeExposure(PickerModel value) {
     _pickedValueSmokeExposure = value;
@@ -141,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /*********************** Diabetes ***********************/
 
-  PickerModel _pickedValueDiabetes = PickerModel('xxxxxxx', code: '?');
+  PickerModel _pickedValueDiabetes = initialValue;
 
   setPickedValueDiabetes(PickerModel value) {
     _pickedValueDiabetes = value;
@@ -151,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /*********************** Blood Pressure ***********************/
 
-  PickerModel _pickedValueBloodPressure = PickerModel('xxxxxxx', code: '?');
+  PickerModel _pickedValueBloodPressure = initialValue;
 
   setPickedValueBloodPressure(PickerModel value) {
     _pickedValueBloodPressure = value;
@@ -161,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /*********************** Cholesterol ***********************/
 
-  PickerModel _pickedValueCholesterol = PickerModel('xxxxxxx', code: '?');
+  PickerModel _pickedValueCholesterol = initialValue;
 
   setPickedValueCholesterol(PickerModel value) {
     _pickedValueCholesterol = value;
@@ -183,7 +180,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Center(
           child: Text(
             widget.title,
-            // AppLocalizations.of(context)!.txtDietButton, // Funcionó!!!!
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -191,11 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      //body: buildMainWidget(context), // Anda
-      // body: buildTandCwidget(context), // Anda
-      // body: () {return SafeArea(child: Text("Algo"));}(),  // Anda
       body: showTandC! ? buildTandCwidget(context) : buildMainWidget(context),
-      //
     );
   }
 
@@ -232,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: 10.0,
                         ),
                         Text(
-                          "Please read carefully before using this app",
+                          AppLocalizations.of(context)!.txtReadCarefully,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -240,14 +232,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: 10.0,
                         ),
                         Text(
-                          "This app calculates the estimated cardiovascular health score as defined by the",
+                          AppLocalizations.of(context)!.txtAppPurpose,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 10.0,
                         ),
-                        //Text(tcText),
                         GestureDetector(
                           onTap: () async {
                             await launchUrl(Uri.parse('https://www.heart.org/en/healthy-living/healthy-lifestyle/lifes-essential-8'));
@@ -264,7 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: 10.0,
                         ),
                         Text(
-                          "The scoring system and criteria are thoroughly explained in:",
+                          AppLocalizations.of(context)!.txtFundamentalsLocation,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -273,7 +264,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             await launchUrl(Uri.parse('https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
                           },
                           child: Text(
-                            'Life’s Essential 8: Updating and Enhancing the American Heart Association’s Construct of Cardiovascular Health: A Presidential Advisory From the American Heart Association',
+                            AppLocalizations.of(context)!.txtLifeEssentialEightObjective,
                             style: TextStyle(
                               decoration: TextDecoration.underline,
                               color: Colors.blue,
@@ -281,7 +272,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         Text(
-                          "Published by: Donald M. Lloyd-Jones, MD, ScM, FAHA, Chair; Norrina B. Allen, PhD, MPH, FAHA; Cheryl A.M. Anderson, PhD, MPH, MS, FAHA; Terrie Black, DNP, MBA, CRRN, FAHA; LaPrincess C. Brewer, MD, MPH; Randi E. Foraker, PhD, MA, FAHA; Michael A. Grandner, PhD, MTR, FAHA; Helen Lavretsky, MD, MS; Amanda Marma Perak, MD, MS, FAHA; Garima Sharma, MD; Wayne Rosamond, PhD, MS, FAHA; on behalf of the American Heart Association",
+                          AppLocalizations.of(context)!.txtPaperAuthors,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -302,7 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               // FlutterExitApp.exitApp(iosForceExit: true);
                               FlutterExitApp.exitApp();
                             },
-                            child: Text('Cancel')),
+                            child: Text(AppLocalizations.of(context)!.txtButtonRejectTandC)),
                         ElevatedButton(
                             onPressed: () {
                               debugPrint("T&C Aceptados");
@@ -310,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               _buttonsEnabled = true;
                               setState(() {});
                             },
-                            child: Text('Accept')),
+                            child: Text(AppLocalizations.of(context)!.txtButtonAcceptTandC)),
                       ],
                     ),
                   ),
@@ -460,7 +451,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 await launchUrl(Uri.parse('https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
               },
               child: Text(
-                'Click here to read the foundations of the calculation',
+                AppLocalizations.of(context)!.txtFundamentalsLocationMainWindow,
                 style: TextStyle(
                   decoration: TextDecoration.underline,
                   color: Colors.blue,
