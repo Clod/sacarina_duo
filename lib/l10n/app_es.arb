@@ -39,6 +39,11 @@
 
    "txtCholesterolButton" : "Colesterol",
    "txtCholesterolDialog" : "Colesterol no-HDL (mg/dL), iniciando a más tardar a los 9-11 años y antes, a discreción del médico.",
-   "txtCholesterolDialogOptions" : "<100 |<100 (medicado) |100 - 119 |120 - 144 |145 - 189 |≥ 190"
+   "txtCholesterolDialogOptions" : "<100 |<100 (medicado) |100 - 119 |120 - 144 |145 - 189 |≥ 190",
+
+  "txtLongPressGauge" : "Mantén presionado el indicador para restablecer todos los valores",
+
+  "txtGlossary" : "Glosario"
+
 }
 

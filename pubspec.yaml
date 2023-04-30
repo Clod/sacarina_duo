@@ -52,6 +52,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # OJO GIT NO GUARDA LOS ÍCONOS GENERADOS Y EL BUILD FALLA SI SE IMPORTA EL PROYECTO
+  # Y NO SE LO CORRE CON: flutter pub run flutter_launcher_icons (SALVO QUE UNO INCLUYA LOS ÍNCONOS)
   flutter_launcher_icons: ^0.12.0
 
 flutter_icons:

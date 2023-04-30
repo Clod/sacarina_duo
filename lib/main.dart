@@ -5,6 +5,7 @@ import 'package:flutter_exit_app/flutter_exit_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
+import 'package:sacarina_duo/help_drawer.dart';
 import 'package:sacarina_duo/pretty_gauge.dart';
 import 'package:sacarina_duo/show_radio_picker_local.dart';
 import 'package:sacarina_duo/theme.dart';
@@ -187,6 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      drawer: HelpDrawer(),
       body: showTandC! ? buildTandCwidget(context) : buildMainWidget(context),
     );
   }
@@ -468,18 +470,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return sa;
   }
 
-  void resetValuesOld() {
-    model.setSelectedDieta(Modelo.valorInicial);
-    model.setActividadFisica(Modelo.valorInicial);
-    model.setMasaCorporal(Modelo.valorInicial);
-    model.setSueno(Modelo.valorInicial);
-    model.setFumar(Modelo.valorInicial);
-    model.setDiabetes(Modelo.valorInicial);
-    model.setPresionArterial(Modelo.valorInicial);
-    model.setColesterol(Modelo.valorInicial);
-    _promedio = 0;
-  }
-
   void resetValues() {
     _pickedValueDiet = initialValue;
     _pickedValuePhysicalActivity = initialValue;
@@ -578,74 +568,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Row armarRow(
-    BuildContext context,
-    String textoBoton,
-    Color? buttonColor,
-    String tituloDialogo,
-    List<PickerModel> listaOpciones,
-    PickerModel seleccion,
-    setter,
-  ) {
-    return Row(
-      children: <Widget>[
-        SizedBox(
-          width: 150.0,
-          height: 35.0,
-          child: ElevatedButton(
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
-            child: Text(
-              textoBoton,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 12.0),
-            ),
-            onPressed: _buttonsEnabled
-                ? () => showMaterialRadioPickerLocal<PickerModel>(
-                    context: context,
-                    superTitle: textoBoton,
-                    title: tituloDialogo,
-                    items: listaOpciones,
-                    selectedItem: seleccion,
-                    onChanged: (value) {
-                      debugPrint("El valor de $textoBoton es $value");
-                      // setState(() => seleccion = value);
-                      setState(() => setter(value));
-                      calcularPromedio(context);
-                    }
-/*
-              onChanged: (value) =>
-                  setState(() => model.selectedUsState = value),
-*/
-                    )
-                : null,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            height: 35,
-            child: SingleChildScrollView(
-              child: Text(
-                '$seleccion (${seleccion.code})',
-                textAlign: TextAlign.right,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
   void calcularPromedio(BuildContext context) {
     try {
-      // _promedio = (double.parse(model.selecActividadFisica.code.toString()) +
-      //         double.parse(model.selecDieta.code.toString()) +
-      //         double.parse(model.selecMasaCorporal.code.toString()) +
-      //         double.parse(model.selecSueno.code.toString()) +
-      //         double.parse(model.selecFumar.code.toString()) +
-      //         double.parse(model.selecDiabetes.code.toString()) +
-      //         double.parse(model.selecPresionArterial.code.toString()) +
-      //         double.parse(model.selecColesterol.code.toString())) /
-      //     8.0;
 
       _promedio = (double.parse(_pickedValueDiet.code.toString()) +
               double.parse(_pickedValuePhysicalActivity.code.toString()) +
@@ -660,7 +585,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            "Long press the gauge to reset all values.",
+            AppLocalizations.of(context)!.txtLongPressGauge,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 13,
@@ -675,3 +600,4 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 }
+
