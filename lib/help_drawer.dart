@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sacarina_duo/help_pages/diet_help.dart';
+import 'package:sacarina_duo/help_pages/item_help.dart';
 
 // https://blog.logrocket.com/how-to-add-navigation-drawer-flutter/
 class HelpDrawer extends StatelessWidget {
@@ -20,27 +20,94 @@ class HelpDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
             ),
-            child: Text(AppLocalizations.of(context)!.txtGlossary),
+            child: Center(
+              child: Text(
+                AppLocalizations.of(context)!.txtGlossary,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
           ListTile(
+            leading: Icon(Icons.restaurant),
             title: Text(AppLocalizations.of(context)!.txtDietButton),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const DietHelp(),
+                  builder: (context) =>
+                      ItemHelp(title: AppLocalizations.of(context)!.txtDietButton, content: AppLocalizations.of(context)!.txtDietHelp),
                 ),
               );
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            leading: Icon(Icons.monitor_weight),
+            title: Text(AppLocalizations.of(context)!.txtBodyMassIndexButton),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ItemHelp(
+                      title: AppLocalizations.of(context)!.txtBodyMassIndexButton, content: AppLocalizations.of(context)!.txtBodyMassIndextHelp),
+                ),
+              );
             },
+          ),
+          ListTile(
+            leading: Icon(Icons.smoking_rooms),
+            title: Text(AppLocalizations.of(context)!.txtSmokeExposureButton),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ItemHelp(
+                      title: AppLocalizations.of(context)!.txtSmokeExposureButton, content: AppLocalizations.of(context)!.txtSmokeExposureHelp),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.icecream),
+            title: Text(AppLocalizations.of(context)!.txtDiabetesButton),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ItemHelp(title: AppLocalizations.of(context)!.txtDiabetesButton, content: AppLocalizations.of(context)!.txtDiabetesHelp),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(AppLocalizations.of(context)!.txtBloodPressureButton),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ItemHelp(title: AppLocalizations.of(context)!.txtBloodPressureButton, content: AppLocalizations.of(context)!.txtBloodPressureHelp),
+                ),
+              );
+            },
+          ),
+          AboutListTile(
+            icon: Icon(
+              Icons.info,
+            ),
+            child: Text('About this app'),
+            applicationIcon: Icon(
+              Icons.local_play,
+            ),
+            applicationName: 'SACARINA',
+            applicationVersion: '2.0.0',
+            applicationLegalese: '',
+            aboutBoxChildren: [
+              ///Content goes here...
+            ],
           ),
         ],
       ),

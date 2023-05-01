@@ -5,13 +5,14 @@
    "txtFundamentalsLocation": "El sistema de puntuación y los criterios se explican detalladamente en:",
    "txtLifeEssentialEightObjective": "Life's Essential 8: Actualización y Mejora del Constructo de Salud Cardiovascular de la Asociación Americana del Corazón: Un Aviso Presidencial de la Asociación Americana del Corazón",
    "txtPaperAuthors": "Publicado por: Donald M. Lloyd-Jones, MD, ScM, FAHA, presidente; Norrina B. Allen, PhD, MPH, FAHA; Cheryl A.M. Anderson, PhD, MPH, MS, FAHA; Terrie Black, DNP, MBA, CRRN, FAHA; LaPrincess C. Brewer, MD, MPH; Randi E. Foraker, PhD, MA, FAHA; Michael A. Grandner, PhD, MTR, FAHA; Helen Lavretsky, MD, MS; Amanda Marma Perak, MD, MS, FAHA; Garima Sharma, MD; Wayne Rosamond, PhD, MS, FAHA; en representación de la Asociación Americana del Corazón",
-   "txtFundamentalsLocationMainWindow": "Haga clic aquí para leer los fundamentos del cálculo",
+   "txtFundamentalsLocationMainWindow": "Click aquí para leer los fundamentos",
    "txtButtonAcceptTandC" : "Aceptar",
    "txtButtonRejectTandC" : "Salir",
 
   "txtDietButton": "Dieta",
-  "txtDietDialog" : "Cuantiles de adherencia al estilo de dieta DASH MEPA. Edades 2-19 a.",
+  "txtDietDialog" : "Cuantiles de adherencia al estilo de dieta DASH (MEPA). Edades 2-19 a.",
   "txtDietDialogOptions" :  "9-10 puntos MEPA |7-8 puntos MEPA |5-6 puntos MEPA |3-4 puntos MEPA |0-2 puntos MEPA ",
+  "txtDietHelp": "**Cuantiles de adherencia a la dieta estilo DASH (MEPA)** se refiere a un método de análisis estadístico utilizado para evaluar la adherencia a la dieta estilo DASH (DASH: Enfoques Dietéticos para Detener la Hipertensión del Inglés Dietary Approaches to Stop Hypertension), que es un patrón dietético que enfatiza el consumo de frutas, verduras, cereales integrales, proteínas magras y productos lácteos bajos en grasas, mientras se limita la ingesta de sodio, azúcares añadidos y grasas saturadas. \n\n**MEPA** es el Patrón de Alimentación Mediterránea para los Estadounidenses (Mediterranean Eating Pattern for Americans). \n\nLos *cuantiles* se refieren a dividir un conjunto de datos en partes o intervalos iguales, basados en la distribución de una variable particular (en este caso, la adherencia a la dieta estilo DASH), para analizar los datos y comparar diferentes grupos de individuos. El uso de cuantiles en este contexto permite la identificación de niveles específicos de adherencia a la dieta estilo DASH.",
 
   "txtPhysicalActivityButton" : "Actividad Física",
   "txtPhysicalActivityDialog" : "Minutos semanales de actividad física moderada o intensa. Edades: 6 a 9",
@@ -20,6 +21,7 @@
    "txtBodyMassIndexButton": "IMC",
    "txtBodyMassIndexDialog": "Percentiles de IMC por edad y sexo, desde la infancia.",
    "txtBodyMassIndexDialogOptions": "5to - < percentil 85|85 - < percentil 95|percentil 95 - < 120% del percentil 95|120% del percentil 95 - < 140% del percentil 95|≥ 140% del percentil 95",
+  "txtBodyMassIndextHelp": "**IMC** significa Índice de Masa Corporal, que es una medida de la grasa corporal basada en la altura y el peso de un individuo. Se calcula dividiendo el peso de un individuo en kilogramos por su altura en metros al cuadrado *(IMC = kg/m²)*. \n\n Es importante tener en cuenta que el BMI no es una medida directa de la grasa corporal y no tiene en cuenta factores como la masa muscular o la composición corporal. Por lo tanto, puede no reflejar con precisión el estado de salud de personas con alta masa muscular, como atletas, o aquellas con baja masa muscular, como adultos mayores. Sin embargo, para la mayoría de las personas, el BMI es una herramienta útil para evaluar su estado de peso y los posibles riesgos de salud asociados con el sobrepeso u obesidad.",
 
    "txtSleepButton": "Sueño",
    "txtSleepDialog": "Horas promedio de sueño por noche (o por 24 h para edad ≤ 5)",
@@ -28,21 +30,23 @@
    "txtSmokeExposureButton": "Exposición al humo",
    "txtSmokeExposureDialog": "Uso de tabaco combustible o uso de NDS inhalado a cualquier edad (a discreción del médico); o exposición al humo pasiva.",
    "txtSmokeExposureDialogOptions": "Nunca lo ha probado |Nunca lo ha probado, pero vive con un fumador en casa |Ha probado algún producto con nicotina, pero hace más de 30 días|Ha probado algún producto con nicotina, pero hace más de 30 días y vive con un fumador en casa |Actualmente usa NDS inhalado |Actualmente usa NDS inhalado y vive con un fumador en casa |Uso actual de tabaco combustible (cualquier tipo en los últimos 30 días)",
+    "txtSmokeExposureHelp": "**NDS (del Inglés: nicotine-delivery system)** significa sistema de suministro de nicotina, que es un término utilizado para describir cualquier dispositivo o producto que suministra nicotina al cuerpo, incluyendo cigarrillos, cigarrillos electrónicos, dispositivos de vapeo y otros productos de tabaco.",
 
-   "txtDiabetesButton": "Diabetes",
-   "txtDiabetesDialog": "Detección basada en síntomas de FBG (mg/dL) o HbA1c (%) a cualquier edad, o detección basada en riesgo a partir de los 10 años de edad o el inicio de la pubertad a discreción del clínico",
+   "txtDiabetesButton" : "Diabetes",
+   "txtDiabetesDialog" : "Detección basada en síntomas de FBG (mg/dL) o HbA1c (%) a cualquier edad, o detección basada en riesgo a partir de los 10 años de edad o el inicio de la pubertad a discreción del clínico",
    "txtDiabetesDialogOptions": "Sin antecedentes de diabetes y FBG<100 (o HbA1c < 5.7) |Sin diabetes y FBG 100 - 125 (o HbA1c 5.7 - 6.4) (prediabetes) |Diabetes con HbA1c < 7.0 |Diabetes con HbA1c 7.0 - 7.9 |Diabetes con HbA1c 8.0 - 8.9 |Diabetes con HbA1c 9.0 - 9.9 |Diabetes con HbA1c ≥ 10",
+   "txtDiabetesHelp" : "**FBG (del Ingés Fasting Blood Glucose)** significa Glucemia en ayunas. Esta es una prueba que mide el nivel de glucosa en la sangre después de ayunar por un cierto período de tiempo. \n\n**HbA1c** significa Hemoglobina Glucosilada y es una prueba de sangre que mide los niveles promedio de glucosa en la sangre durante los últimos 2-3 meses. La hemoglobina es una proteína en los glóbulos rojos que transporta oxígeno por todo el cuerpo. Cuando la glucosa en la sangre se une a la hemoglobina, el resultado es hemoglobina glucosilada o HbA1c.\"",
 
    "txtBloodPressureButton": "Presión arterial",
    "txtBloodPressureDialog": "Percentiles de PA sistólica y diastólica (mm Hg) por edad hasta los 12 años. A partir de los 13 años, utilizar el puntaje para adultos. La detección debe iniciarse a más tardar a los 3 años y antes, a discreción del clínico.",
    "txtBloodPressureDialogOptions": "Óptimo (<percentil 90) |Óptimo (<percentil 90) (tratado) |Elevada (≥percentil 90 - <percentil 95 o ≥120/80 mm Hg a <percentil 95, lo que sea menor) |Elevada (≥percentil 90 - <percentil 95 o ≥120/80 mm Hg a <percentil 95, lo que sea menor) (tratado) |Hipertensión de etapa 1 (≥percentil 95 - <percentil 95 + 12 mm Hg, o 130/80 - 139/89 mm Hg, lo que sea menor) |Hipertensión de etapa 1 (≥percentil 95 - <percentil 95 + 12 mm Hg, o 130/80 - 139/89 mm Hg, lo que sea menor) (tratado) |Hipertensión de etapa 2 (≥percentil 95 + 12 mm Hg o ≥140/90 mm Hg, lo que sea menor) |Hipertensión de etapa 2 (≥percentil 95 + 12 mm Hg o ≥140/90 mm Hg, lo que sea menor) (tratado) |PA sistólica ≥160 o ≥percentil 95 + 30 mm Hg de PA sistólica, lo que sea menor y/o PA diastólica ≥100 o ≥percentil 95 + 20 mm Hg de PA diastólica",
+  "txtBloodPressureHelp": "**La presión arterial sistólica (PAS)** es la presión ejercida por la sangre contra las paredes de las arterias cuando el corazón late y bombea sangre hacia el cuerpo. Es el número superior en una lectura de presión arterial y se mide en milímetros de mercurio (mm Hg).\n\n**La presión arterial diastólica (PAD)** es la presión ejercida por la sangre contra las paredes de las arterias cuando el corazón está en reposo entre latidos. Es el número inferior en una lectura de presión arterial y también se mide en milímetros de mercurio (mm Hg).",
 
    "txtCholesterolButton" : "Colesterol",
    "txtCholesterolDialog" : "Colesterol no-HDL (mg/dL), iniciando a más tardar a los 9-11 años y antes, a discreción del médico.",
    "txtCholesterolDialogOptions" : "<100 |<100 (medicado) |100 - 119 |120 - 144 |145 - 189 |≥ 190",
 
   "txtLongPressGauge" : "Mantén presionado el indicador para restablecer todos los valores",
-
   "txtGlossary" : "Glosario"
 
 }
