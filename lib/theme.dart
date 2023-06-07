@@ -18,7 +18,8 @@ ThemeData buildTheme(Brightness brightness) {
     backgroundColor = Colors.green[100]!;
     primaryColor = Colors.green;
     accentColor = Colors.green[900]!;
-    textColor = Colors.green[700]!; // Textos en los Dialor y en el final de las Rows
+  //  textColor = Colors.green[700]!; // Textos en los Dialor y en el final de las Rows
+    textColor = Colors.black54; // Textos en los Dialogs y en el final de las Rows
     headerTextColor = Colors.lightGreen[50]!; // Header de los Dialogs
   }
 

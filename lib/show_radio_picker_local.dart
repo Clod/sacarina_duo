@@ -57,10 +57,14 @@ Future<T?> showMaterialRadioPickerLocal<T>({
   /// Function that is called when each items renders which can be used to transform the content
   /// This is helpful, for example, to provide translations to other languages
   Transformer<T>? transformer,
+
+  String? preText,
+
 }) {
   return showDialog<T>(
     context: context,
     builder: (BuildContext context) {
+
       return RadioPickerDialogLocal<T>(
         items: items,
         superTitle: superTitle,
@@ -75,6 +79,7 @@ Future<T?> showMaterialRadioPickerLocal<T>({
         maxLongSide: maxLongSide,
         maxShortSide: maxLongSide,
         transformer: transformer,
+        preText: preText,
       );
     },
   ).then((selection) {

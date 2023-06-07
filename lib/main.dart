@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValueDiet = value;
   }
 
-  final _dietValues = [100.0, 70.0, 30.0, 15.0, 0.0];
+  final _dietValues = [100, 70, 30, 15, 0];
 
   /*********************** Physical Activity ***********************/
 
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValuePhysicalActivity = value;
   }
 
-  final _PhysicalActivityValues = [100.0, 90.0, 80.0, 60.0, 40.0, 20.0, 0.0];
+  final _PhysicalActivityValues = [100, 90, 80, 60, 40, 20, 0];
 
   PickerModel _pickedValueBodyMassIndex = initialValue;
 
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValueBodyMassIndex = value;
   }
 
-  final _BodyMassIndexValues = [100.0, 30.0, 15.0, 70.0, 0.0];
+  final _BodyMassIndexValues = [100, 30, 15, 70, 0];
 
   /*********************** Sleep ***********************/
 
@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValueSleep = value;
   }
 
-  final _SleepValues = [100.0, 90.0, 70.0, 40.0, 20.0, 0.0];
+  final _SleepValues = [100, 90, 70, 40, 20, 0];
 
   /*********************** Smoke exposure ***********************/
 
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValueSmokeExposure = value;
   }
 
-  final _SmokeExposureValues = [100.0, 80.0, 50.0, 30.0, 25.0, 5.0, 0.0];
+  final _SmokeExposureValues = [100, 80, 50, 30, 25, 5, 0];
 
   /*********************** Diabetes ***********************/
 
@@ -145,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValueDiabetes = value;
   }
 
-  final _DiabetesValues = [100.0, 60.0, 40.0, 30.0, 20.0, 10.0, 0.0];
+  final _DiabetesValues = [100, 60, 40, 30, 20, 10, 0];
 
   /*********************** Blood Pressure ***********************/
 
@@ -155,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValueBloodPressure = value;
   }
 
-  final _BloodPressureValues = [100.0, 80.0, 75.0, 55.0, 50.0, 30.0, 25.0, 5.0, 0.0];
+  final _BloodPressureValues = [100, 80, 75, 55, 50, 30, 25, 5, 0];
 
   /*********************** Cholesterol ***********************/
 
@@ -165,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValueCholesterol = value;
   }
 
-  final _CholesterolValues = [100.0, 80.0, 60.0, 40.0, 20.0, 0.0];
+  final _CholesterolValues = [100, 80, 60, 40, 20, 0];
 
   /***********************************************************/
 
@@ -202,114 +202,113 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         buildMainWidget(context),
         Container(
-            color: Colors.cyan,
-            width: MediaQuery.of(context).size.width * 0.66,
-            height: MediaQuery.of(context).size.height * 0.60,
-            alignment: Alignment.center,
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.75 * 0.7,
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.txtImportantNotice,
+          color: Colors.cyan,
+          width: MediaQuery.of(context).size.width * 0.66,
+          height: MediaQuery.of(context).size.height * 0.60,
+          alignment: Alignment.center,
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height * 0.75 * 0.7,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.txtImportantNotice,
+                        style: TextStyle(
+                            color: Colors.deepOrange,
+                            fontSize: (MediaQuery.of(context).textScaleFactor) * (DefaultTextStyle.of(context).style.fontSize)!.toInt() * 0.3,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.txtReadCarefully,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.txtAppPurpose,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          await launchUrl(Uri.parse('https://www.heart.org/en/healthy-living/healthy-lifestyle/lifes-essential-8'));
+                        },
+                        child: Text(
+                          'American Heart Association',
                           style: TextStyle(
-                              color: Colors.deepOrange,
-                              fontSize: (MediaQuery.of(context).textScaleFactor) * (DefaultTextStyle.of(context).style.fontSize)!.toInt() * 0.3,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.txtReadCarefully,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.txtAppPurpose,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        GestureDetector(
-                          onTap: () async {
-                            await launchUrl(Uri.parse('https://www.heart.org/en/healthy-living/healthy-lifestyle/lifes-essential-8'));
-                          },
-                          child: Text(
-                            'American Heart Association',
-                            style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: Colors.blue,
-                            ),
+                            decoration: TextDecoration.underline,
+                            color: Colors.blue,
                           ),
                         ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.txtFundamentalsLocation,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        GestureDetector(
-                          onTap: () async {
-                            await launchUrl(Uri.parse('https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.txtLifeEssentialEightObjective,
-                            style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: Colors.blue,
-                            ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.txtFundamentalsLocation,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          await launchUrl(Uri.parse('https://www.ahajournals.org/doi/10.1161/CIR.0000000000001078'));
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.txtLifeEssentialEightObjective,
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.blue,
                           ),
                         ),
-                        Text(
-                          AppLocalizations.of(context)!.txtPaperAuthors,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.txtPaperAuthors,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        ElevatedButton(
-                            onPressed: () {
-                              debugPrint("Cancelando...");
-                              // Gracefully quit the app
-                              // Según leí, Apple no lo permite pero esto, de alguna manera, lo logra.
-                              // FlutterExitApp.exitApp(iosForceExit: true);
-                              FlutterExitApp.exitApp();
-                            },
-                            child: Text(AppLocalizations.of(context)!.txtButtonRejectTandC)),
-                        ElevatedButton(
-                            onPressed: () {
-                              debugPrint("T&C Aceptados");
-                              tcAccepted = true;
-                              _buttonsEnabled = true;
-                              setState(() {});
-                            },
-                            child: Text(AppLocalizations.of(context)!.txtButtonAcceptTandC)),
-                      ],
-                    ),
+              ),
+              Expanded(
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      ElevatedButton(
+                          onPressed: () {
+                            // Gracefully quit the app
+                            // Según leí, Apple no lo permite pero esto, de alguna manera, lo logra.
+                            // FlutterExitApp.exitApp(iosForceExit: true);
+                            FlutterExitApp.exitApp();
+                          },
+                          child: Text(AppLocalizations.of(context)!.txtButtonRejectTandC)),
+                      ElevatedButton(
+                          onPressed: () {
+                            tcAccepted = true;
+                            _buttonsEnabled = true;
+                            setState(() {});
+                          },
+                          child: Text(AppLocalizations.of(context)!.txtButtonAcceptTandC)),
+                    ],
                   ),
-                )
-              ],
-            ))
+                ),
+              )
+            ],
+          ),
+        )
       ],
     );
 
@@ -330,6 +329,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     SafeArea sa = SafeArea(
       child: Container(
+        // color: Colors.black12,
         margin: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
@@ -369,7 +369,7 @@ class _MyHomePageState extends State<MyHomePage> {
             armarRowI(
               context,
               AppLocalizations.of(context)!.txtSleepButton,
-              Colors.red,
+              Colors.blue,
               AppLocalizations.of(context)!.txtSleepDialog,
               AppLocalizations.of(context)!.txtSleepDialogOptions,
               _SleepValues,
@@ -408,6 +408,7 @@ class _MyHomePageState extends State<MyHomePage> {
               _BloodPressureValues,
               _pickedValueBloodPressure,
               setPickedValueBloodPressure,
+              preText: AppLocalizations.of(context)!.txtBloodPressureWarning,
             ),
             const Expanded(child: SizedBox(height: 5)),
             armarRowI(
@@ -443,8 +444,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   GaugeSegment('High', 10, Colors.green),
                 ],
                 currentValue: _promedio,
-                //currentValue: double.parse('80'),
-                // currentValue: 42,
                 displayWidget: const Text('Score', style: TextStyle(fontSize: 16)),
               ),
             ),
@@ -464,8 +463,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-
-//    buildTandCwidget(Scaffold.of(context).context);
 
     return sa;
   }
@@ -488,10 +485,11 @@ class _MyHomePageState extends State<MyHomePage> {
     Color? buttonColor,
     String tituloDialogo,
     String listaOpciones,
-    List<double> listaValores,
+    List<int> listaValores,
     PickerModel seleccion,
-    setter,
-  ) {
+    setter, {
+    String? preText,
+  }) {
     return Row(
       children: <Widget>[
         SizedBox(
@@ -522,11 +520,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     // because the laguage might have changes in the middle.
 
                     optionsFull.forEach((element) {
-                      /*
-                        if (element.code.toString() ==
-                          pickedValues['Diet']!.code.toString()) {
-                        pickedValues['Diet'] = element;
-                      }*/
                       if (element.code.toString() == seleccion.code.toString()) {
                         seleccion = element;
                       }
@@ -537,16 +530,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         superTitle: textoBoton,
                         title: tituloDialogo,
                         items: optionsFull,
-                        //selectedItem: pickedValues['Diet'],
+                        preText: preText, // Cargarlos todos en un vector in el initState()
                         selectedItem: seleccion,
                         onChanged: (value) {
                           debugPrint("El valor de $textoBoton es $value");
-                          //setState(() => pickedValues["Diet"] = value);
                           setState(() {
                             setter(value);
-                            // _pickedValueDieta = value;
                           });
-                          //setState(() => setter(value));
                           calcularPromedio(context);
                         });
                   }
@@ -557,9 +547,16 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Container(
             height: 35,
             child: SingleChildScrollView(
-              child: Text(
-                '$seleccion (${seleccion.code})',
-                textAlign: TextAlign.right,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(8.0,0.0,0.0,0.0),
+                child: Text(
+                  '[${seleccion.code}] - $seleccion ',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: getColor(seleccion.code.toString()),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ),
@@ -568,10 +565,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
   void calcularPromedio(BuildContext context) {
     try {
-
       _promedio = (double.parse(_pickedValueDiet.code.toString()) +
               double.parse(_pickedValuePhysicalActivity.code.toString()) +
               double.parse(_pickedValueBodyMassIndex.code.toString()) +
@@ -601,3 +596,31 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+Color getColor(String code) {
+  if (code == '?') return Colors.black;
+
+  int score = int.parse(code);
+
+  if (score == 0)
+    return Colors.red;
+  else if (score < 20)
+    return Color.fromRGBO(246, 101, 55, 100);
+  else if (score < 30)
+    return Color.fromRGBO(248, 134, 56, 100);
+  else if (score < 40)
+    return Color.fromRGBO(251, 168, 57, 100);
+  else if (score < 50)
+    return Color.fromRGBO(253, 201, 58, 100);
+  else if (score < 60)
+    return Colors.yellow;
+  else if (score < 80)
+    return Color.fromRGBO(210, 220, 64, 100);
+  else if (score < 90)
+    return Color.fromRGBO(166, 205, 70, 100);
+  else if (score < 100)
+    return Color.fromRGBO(121, 190, 75, 100);
+  else if (score == 100)
+    return Colors.green;
+  else
+    return Color.fromRGBO(0, 0, 0, 100);
+}

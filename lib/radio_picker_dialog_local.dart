@@ -14,8 +14,8 @@ import 'package:sacarina_duo/responsive_dialog_composed_header.dart';
 
 /// This is a support widget that returns an Dialog with checkboxes as a Widget.
 /// It is designed to be used in the showDialog method of other fields.
-class RadioPickerDialogLocal<T> extends StatefulWidget
-    implements ICommonDialogProperties {
+class RadioPickerDialogLocal<T> extends StatefulWidget implements ICommonDialogProperties {
+
   RadioPickerDialogLocal({
     required this.superTitle,
     this.title,
@@ -30,6 +30,7 @@ class RadioPickerDialogLocal<T> extends StatefulWidget
     this.maxShortSide,
     this.confirmText,
     this.cancelText,
+    this.preText,
   });
 
   // Variables
@@ -55,10 +56,10 @@ class RadioPickerDialogLocal<T> extends StatefulWidget
   final String? confirmText;
   @override
   final String? cancelText;
+  final String? preText;
 
   @override
-  State<RadioPickerDialogLocal> createState() =>
-      _RadioPickerDialogLocalState<T>(selectedItem);
+  State<RadioPickerDialogLocal> createState() => _RadioPickerDialogLocalState<T>(selectedItem);
 }
 
 class _RadioPickerDialogLocalState<T> extends State<RadioPickerDialogLocal<T>> {
@@ -80,6 +81,7 @@ class _RadioPickerDialogLocalState<T> extends State<RadioPickerDialogLocal<T>> {
       maxShortSide: widget.maxLongSide,
       confirmText: widget.confirmText,
       cancelText: widget.cancelText,
+      preText: widget.preText,
       child: RadioPicker<T>(
         items: widget.items,
         initialValue: selectedItem,

@@ -11,6 +11,8 @@
 
     </queries>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="SACARINA"
         android:name="${applicationName}"
