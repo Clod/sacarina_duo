@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:sacarina_duo/help_pages/item_help.dart';
 
 // https://blog.logrocket.com/how-to-add-navigation-drawer-flutter/
@@ -88,8 +89,8 @@ class HelpDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      ItemHelp(title: AppLocalizations.of(context)!.txtBloodPressureButton, content: AppLocalizations.of(context)!.txtBloodPressureHelp),
+                  builder: (context) => ItemHelp(
+                      title: AppLocalizations.of(context)!.txtBloodPressureButton, content: AppLocalizations.of(context)!.txtBloodPressureHelp),
                 ),
               );
             },
@@ -104,9 +105,17 @@ class HelpDrawer extends StatelessWidget {
             ),
             applicationName: 'SACARINA',
             applicationVersion: '2.0.0',
-            applicationLegalese: '',
+            applicationLegalese: 'This app is Freeware and Open Source',
             aboutBoxChildren: [
-              ///Content goes here...
+              SizedBox(height: 5.0,),
+              SizedBox(
+                  height: 300.0,
+                  width: 150.0,
+                  child: SingleChildScrollView(
+                    child: Html(
+                        data:
+                        AppLocalizations.of(context)!.txtAbout),
+                  ))
             ],
           ),
         ],

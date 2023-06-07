@@ -57,7 +57,9 @@
 
   "txtLongPressGauge" : "Long press the gauge to reset all values.",
 
-  "txtGlossary" : "Glossary"
+  "txtGlossary" : "Glossary",
+
+  "txtAbout" : ""
 
 
 
