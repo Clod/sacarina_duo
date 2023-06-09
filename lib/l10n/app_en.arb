@@ -19,7 +19,7 @@
 
   "txtPhysicalActivityButton" : "Physical Activity",
   "txtPhysicalActivityDialog" : "Minutes of moderate or greater intensity activity per week. Ages: 6 to 9.",
-  "txtPhysicalActivityDialogOptions" : "≥ 420 minutes|360 - 419 minutes|300 - 359 minutes|240 - 299 minutes|120 - 239 minutes|1 - 119 minutes|No activity)",
+  "txtPhysicalActivityDialogOptions" : "≥ 420 minutes|360 - 419 minutes|300 - 359 minutes|240 - 299 minutes|120 - 239 minutes|1 - 119 minutes|No activity",
   
   "txtBodyMassIndexButton" : "BMI",
   "txtBodyMassIndexDialog" : "BMI percentiles for age and sex, starting in infancy.",

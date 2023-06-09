@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pickedValueBodyMassIndex = value;
   }
 
-  final _BodyMassIndexValues = [100, 30, 15, 70, 0];
+  final _BodyMassIndexValues = [100, 70, 30, 15, 0];
 
   /*********************** Sleep ***********************/
 
@@ -178,13 +178,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            widget.title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+        title: Text(
+          widget.title,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -318,13 +317,13 @@ class _MyHomePageState extends State<MyHomePage> {
       st.children.removeAt(1);
       setState(() {});
     }
+
     return st;
-    // setState(() {});
   }
 
   // Main widget with the actual app
   SafeArea buildMainWidget(BuildContext context) {
-//    debugPrint("selectedDietaOpt: ${pickedValues["Diet"]?.name}");
+
     debugPrint("selectedDietaOpt: $_pickedValueDiet");
 
     SafeArea sa = SafeArea(

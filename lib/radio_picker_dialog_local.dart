@@ -82,6 +82,7 @@ class _RadioPickerDialogLocalState<T> extends State<RadioPickerDialogLocal<T>> {
       confirmText: widget.confirmText,
       cancelText: widget.cancelText,
       preText: widget.preText,
+      selectedItem: selectedItem,
       child: RadioPicker<T>(
         items: widget.items,
         initialValue: selectedItem,

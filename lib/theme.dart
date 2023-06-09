@@ -15,9 +15,9 @@ ThemeData buildTheme(Brightness brightness) {
 
   // override colors for light themes
   if (brightness == Brightness.light) {
-    backgroundColor = Colors.green[100]!;
-    primaryColor = Colors.green;
-    accentColor = Colors.green[900]!;
+    backgroundColor = Colors.blue[100]!;
+    primaryColor = Colors.blue;
+    accentColor = Colors.blue[900]!;
   //  textColor = Colors.green[700]!; // Textos en los Dialor y en el final de las Rows
     textColor = Colors.black54; // Textos en los Dialogs y en el final de las Rows
     headerTextColor = Colors.lightGreen[50]!; // Header de los Dialogs
@@ -33,7 +33,7 @@ ThemeData buildTheme(Brightness brightness) {
     ),
     textTheme: theme.textTheme.copyWith(
       bodyLarge: theme.textTheme.bodyLarge?.copyWith(
-        color: Colors.green[900], // text color of dialog text
+        color: Colors.blue[900], // text color of dialog text
       ),
       bodyMedium: theme.textTheme.bodyMedium?.copyWith(
         color: textColor, // text color of dialog text

@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_pickers/interfaces/common_dialog_properties.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'linear_gauge.dart';
+
 // copied from flutter calendar picker
 const Duration _dialogSizeAnimationDuration = Duration(milliseconds: 200);
 const double alturaEncabezado = 130.0;
@@ -15,6 +17,7 @@ const double alturaEncabezado = 130.0;
 /// This is a support widget that returns an Dialog with checkboxes as a Widget.
 /// It is designed to be used in the showDialog method of other fields.
 class ResponsiveDialogLocal extends StatefulWidget implements ICommonDialogProperties {
+
   ResponsiveDialogLocal({
     required this.context,
     required this.superTitle,
@@ -33,6 +36,7 @@ class ResponsiveDialogLocal extends StatefulWidget implements ICommonDialogPrope
     this.confirmText,
     this.cancelText,
     this.preText,
+    this.selectedItem,
   })  : title = title ?? "Title Here",
         child = child ?? Text("Content Here"),
         maxLongSide = maxLongSide ?? 600,
@@ -63,6 +67,7 @@ class ResponsiveDialogLocal extends StatefulWidget implements ICommonDialogPrope
   @override
   final String? cancelText;
   final String? preText;
+  var selectedItem;
   // Events
   final VoidCallback? cancelPressed;
   final VoidCallback? okPressed;
@@ -80,13 +85,12 @@ class _ResponsiveDialogLocalState extends State<ResponsiveDialogLocal> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _showContainer = widget.preText != null && widget.preText!.isNotEmpty;
     debugPrint(_showContainer.toString());
   }
 
-  Widget header(BuildContext context, Orientation orientation) {
+  Widget header(BuildContext context, Orientation orientation, selectedItem) {
     return Container(
       color: _headerColor,
       height: (orientation == Orientation.portrait) ? alturaEncabezado : null,
@@ -113,6 +117,7 @@ class _ResponsiveDialogLocalState extends State<ResponsiveDialogLocal> {
                 color: _headerTextColor,
               ),
             ),
+            LinearGauge(height: 10.0, valueToSignal: selectedItem),
           ],
         ),
       ),
@@ -160,8 +165,9 @@ class _ResponsiveDialogLocalState extends State<ResponsiveDialogLocal> {
     var theme = Theme.of(context);
     _headerColor = widget.headerColor ?? theme.primaryColor;
     _headerTextColor = widget.headerTextColor ?? theme.primaryTextTheme.headline6?.color;
-    _buttonTextColor = widget.buttonTextColor ?? theme.textTheme.button?.color;
-    _backgroundColor = widget.backgroundColor ?? theme.dialogBackgroundColor;
+    _buttonTextColor = widget.buttonTextColor ?? theme.textTheme.labelLarge?.color;
+    // _backgroundColor = widget.backgroundColor ?? theme.dialogBackgroundColor;
+    _backgroundColor = Colors.white;
 
     final Orientation orientation = MediaQuery.of(context).orientation;
 
@@ -187,7 +193,7 @@ class _ResponsiveDialogLocalState extends State<ResponsiveDialogLocal> {
                       absorbing: _showContainer,
                       child: Column(
                         children: <Widget>[
-                          header(context, orientation),
+                          header(context, orientation, widget.selectedItem),
                           Expanded(
                             child: Container(
                               child: widget.child,
@@ -229,7 +235,7 @@ class _ResponsiveDialogLocalState extends State<ResponsiveDialogLocal> {
               case Orientation.landscape:
                 return Row(
                   children: <Widget>[
-                    header(context, orientation),
+                    header(context, orientation, widget.selectedItem),
                     Expanded(
                       child: Column(
                         children: <Widget>[
